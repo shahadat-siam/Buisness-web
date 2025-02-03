@@ -7,23 +7,46 @@ import { FcGoogle } from 'react-icons/fc';
 
 const Signup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState('');
+  console.log(error)
+
+  const hundleCreateUser = async (e) => {
+    e.preventDefault()
+    const form = e.target
+    const name = form.name.value
+    const email = form.email.value
+    const password = form.password.value
+     
+    if(password.length < 6) {
+      const error = 'password should be 6 char'
+      return setError(error)
+    }
+    else if(! /^(?=.*[a-z])(?=.*?[#?!@$%^&*-])(?=.*[A-Z]).+$/.test(password)){
+      const error = 'at least one capital latter & special character'
+      return setError(error)
+  } 
+  else{
+     setError('')
+  }
+  console.log(name, email, password)
+  }
  
   return (
     <div 
       className='min-h-[100vh] flex justify-center items-center bg-cover bg-center' 
       style={{ backgroundImage: `url(${img1})` }}
     >
-      <form className='max-w-[450px] w-full pb-5 bg-[#e9defae5]  bg-opacity-90 rounded-lg shadow-lg'>
+      <form onSubmit={hundleCreateUser} className='max-w-[450px] w-full pb-5 bg-[#e9defae5]  bg-opacity-90 rounded-lg shadow-lg'>
         <div className='w-full mx-auto h-4 rounded-none bg-[#578FCA]'></div>
         <h1 className='text-center font-mono text-3xl pt-8 font-semibold text-[#578FCA]'>Sign up</h1>
         <p className='text-center pt-2'>Let's get started with your</p>
         <div className='space-y-5 mx-auto mt-4 max-w-[350px] p-5 w-full'>
-          <input type="text" className='w-full px-4 py-2  rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Name' />
-          <input type="email" className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Email' />
+          <input type="text" name='name' className='w-full px-4 py-2  rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Name' />
+          <input type="email" name='email' className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Email' />
           <div className='relative'>
-            <input type= {passwordVisible ? "text" : "password" }  className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Password' />
-            <button
-                type="button"
+            <input name='password' type= {passwordVisible ? "text" : "password" }  className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Password ***' />
+               {error && <p>{error}</p>}
+            <button type='button'
                 className="absolute right-3 top-3 text-gray-500"
                 onClick={() => setPasswordVisible(!passwordVisible)}
               >
@@ -31,7 +54,7 @@ const Signup = () => {
               </button> 
           </div>        
           <div>
-            <button type="button" className='w-full bg-[#497D74] p-2 rounded-md text-slate-100 font-semibold'>Sign Up</button>
+            <button type="submit" className='w-full bg-[#497D74] p-2 rounded-md text-slate-100 font-semibold'>Sign Up</button>
           </div>
           <p className='text-center text-sm'>Already have an account? <Link className='text-[#578FCA] font-semibold underline' to='/login'>Login!</Link></p>
           <div className=' flex cursor-pointer items-center px-10 py-1 border-[1px] shadow-md border-gray-400 rounded-md'>
