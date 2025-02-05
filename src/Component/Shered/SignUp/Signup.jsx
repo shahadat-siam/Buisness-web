@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import img1 from '../../../assets/Signup bg.jpg';
 import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { FcGoogle } from 'react-icons/fc';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Signup = () => {
+  const {  createUser} = useContext(AuthContext)
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState('');
   console.log(error)
@@ -16,6 +18,15 @@ const Signup = () => {
     const name = form.name.value
     const email = form.email.value
     const password = form.password.value
+
+    try{
+      const result = await createUser(email,password)
+        console.log(result)
+  
+    }catch(err){
+        console.log(err)
+      }
+  
      
     if(password.length < 6) {
       const error = 'password should be 6 char'
@@ -31,6 +42,7 @@ const Signup = () => {
   console.log(name, email, password)
   }
  
+  
   return (
     <div 
       className='min-h-[100vh] flex justify-center items-center bg-cover bg-center' 
@@ -41,8 +53,8 @@ const Signup = () => {
         <h1 className='text-center font-mono text-3xl pt-8 font-semibold text-[#578FCA]'>Sign up</h1>
         <p className='text-center pt-2'>Let's get started with your</p>
         <div className='space-y-5 mx-auto mt-4 max-w-[350px] p-5 w-full'>
-          <input type="text" name='name' className='w-full px-4 py-2  rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Name' />
-          <input type="email" name='email' className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Email' />
+          <input type="text" name='name' className='w-full px-4 py-2  rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Name' required />
+          <input type="email" name='email' className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Email' required />
           <div className='relative'>
             <input name='password' type= {passwordVisible ? "text" : "password" }  className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Password ***' />
                {error && <p>{error}</p>}
