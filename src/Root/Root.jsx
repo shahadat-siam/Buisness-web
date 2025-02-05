@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../Component/Shered/Navbar'
+import { AuthContext } from '../Provider/AuthProvider'
 
 const Root = () => {
+  const {user} = useContext(AuthContext)
   return (
     <div>
-      <Navbar/>
+       
        <div className='min-h-[90vh]'>
        <Outlet/>
        </div>
-        <p className='text-center'>Footer </p>
+        {user && <p className='text-center'>Footer </p>}
     </div>
   )
 }
