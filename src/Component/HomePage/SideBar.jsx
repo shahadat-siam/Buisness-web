@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { AiOutlineBars } from "react-icons/ai"; 
-import { GrLogout } from "react-icons/gr";
+import { AiOutlineBars } from "react-icons/ai";  
 import { Link,  } from "react-router-dom";
-// import logo from "../../assets/images/OriginalLogo.png";
-import { BsGraphUp } from "react-icons/bs";
-import MenuItem from "../Shered/MenuItem"; 
+// import logo from "../../assets/images/OriginalLogo.png"; 
+import MenuItem from "../Shered/MenuItem";  
+import { FcApprove,  FcBadDecision, FcCircuit, FcCurrencyExchange, FcGoodDecision, FcHighPriority, FcImport, FcPlus, FcPositiveDynamic, FcServices, } from "react-icons/fc";
+ 
 
 const SideBar = () => {
   const [isActive, setActive] = useState(false);
@@ -61,9 +61,26 @@ const SideBar = () => {
              
             {/*  Menu Items */}
             <nav> 
-              <MenuItem label='Statistics' address='/lroot' icon={BsGraphUp} /> 
-              {/* Other Menu Option */}
-              <p>this is admin menu</p>
+              <MenuItem label='Statistics' address='/lroot' icon={FcCircuit} /> 
+              <MenuItem label='Dashboard' address='/lroot/dashboard' icon={FcPositiveDynamic} /> 
+              <MenuItem label='Sale' address='/lroot/sale' icon={FcApprove}  
+              subItems={[
+                { label: 'Sale', address: '/lroot/sale' },
+                { label: 'Payment', address: '/sale/payment' },
+                { label: 'Customer', address: '/sale/customer' },
+              ]}/> 
+              <MenuItem label='Purchase' address='/lroot/purchase' icon={FcGoodDecision}  
+              subItems={[
+                { label: 'Purchase', address: '/lroot/purchase' },
+                { label: 'Payment', address: '/purchase/payment' },
+                { label: 'Supplier', address: '/purchase/supplier' },
+              ]}/> 
+              <MenuItem label='Bank' address='/lroot/bank' icon={FcCurrencyExchange} /> 
+              <MenuItem label='Expense' address='/lroot/expense' icon={FcBadDecision} /> 
+              <MenuItem label='Product' address='/lroot/products' icon={FcPlus} /> 
+              <MenuItem label='Report' address='/lroot/report' icon={FcHighPriority} /> 
+              <MenuItem label='Settings' address='/lroot/setting' icon={FcServices} /> 
+             
             </nav>
           </div>
         </div>
@@ -74,7 +91,7 @@ const SideBar = () => {
             // onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
-            <GrLogout className="w-5 h-5" />
+            <FcImport className="w-5 h-5" />
             {/* onClick={logOut} */}
             <span className="mx-4 font-medium">Logout</span>
           </button>

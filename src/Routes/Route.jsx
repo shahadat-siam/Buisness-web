@@ -5,6 +5,9 @@ import Signup from "../Component/Shered/SignUp/Signup";
 import Login from "../Component/Shered/Login/Login";
 import LandingRoot from "../Root/LandingRoot";
 import Statistics from "../Component/HomePage/Statistic";
+import Purchase from "../MenuOption/Purchase/Purchase";
+import Sale from "../MenuOption/Sale/Sale";
+import Bank from "../MenuOption/Bank/Bank";
 
  export const router = createBrowserRouter([
     {
@@ -32,6 +35,18 @@ import Statistics from "../Component/HomePage/Statistic";
             {
                 index: true,
                 element: <Statistics/>
+            },
+            {
+                path:'/lroot/purchase',
+                element: <Purchase/>
+            },
+            {
+                path:'/lroot/sale',
+                element: <Sale/>
+            },
+            {
+                path: '/lroot/bank',
+                element: <Bank/>
             }
         ]
     }
