@@ -6,8 +6,8 @@ import { AuthContext } from '../Provider/AuthProvider'
 const Root = () => {
   const {user} = useContext(AuthContext)
   return (
-    <div>
-       
+    <div className='max-w-7xl mx-auto'> 
+        {user && <Navbar/>}
        <div className='min-h-[90vh]'>
        <Outlet/>
        </div>
