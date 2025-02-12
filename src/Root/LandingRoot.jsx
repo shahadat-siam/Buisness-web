@@ -8,7 +8,7 @@ const LandingRoot = () => {
       <div className='min-h-[100vh] max-w-7xl mx-auto relative md:flex'> 
              <Navbar/>
             <div ><SideBar/></div>
-            <div className='ml-72 mt-20'>
+            <div className='md:ml-72 ml-8 mt-20 px-4'>
             <Outlet/>
             </div> 
         </div>
