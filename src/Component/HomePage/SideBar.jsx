@@ -37,7 +37,7 @@ const SideBar = () => {
 
       {/* Sidebar */}
       <div
-        className={`md:fixed flex flex-col mt-16 justify-between bg-[#e9defae5] w-52 absolute inset-y-0 transform ${
+        className={`md:fixed flex flex-col mt-16 justify-between bg-[#FFEDFA] w-52 absolute inset-y-0 transform ${
           isActive && "-translate-x-full"
         } md:translate-x-0 transition duration-200 ease-in-out`}
       >

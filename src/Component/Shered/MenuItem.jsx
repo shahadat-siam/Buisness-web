@@ -14,12 +14,12 @@ const MenuItem = ({ label, address, icon: Icon, subItems = [] }) => {
   return (
     <div className="w-full">
       {/* Main Menu Item */}
-      <div className="flex items-center justify-between px-4 py-2 my-2 transition-colors duration-300 transform hover:bg-gray-300 hover:text-gray-700">
+      <div className="flex items-center justify-between px-4 py-2 my-2 transition-colors duration-300 transform hover:bg-[#FFEDFA] hover:text-[#F7F7F7]">
         <NavLink
           to={address}
           end
           className={({ isActive }) =>
-            `flex items-center ${isActive ? 'text-gray-700' : 'text-gray-600'}`
+            `flex items-center ${isActive ? 'text-[#13202b] ' : 'text-[#27445D]'}`
           }
         >
           <Icon className="w-5 h-5" />
@@ -45,8 +45,8 @@ const MenuItem = ({ label, address, icon: Icon, subItems = [] }) => {
               key={subItem.address}
               to={subItem.address}
               className={({ isActive }) =>
-                `block px-4 py-2 my-1 text-sm transition-colors duration-300 transform hover:bg-gray-200 hover:text-gray-700 ${
-                  isActive ? 'bg-gray-200 text-gray-700' : 'text-gray-600'
+                `block px-4 py-2 my-1 text-sm transition-colors duration-300 transform hover:bg-[#F7CFD8] hover:text-[#21394e] ${
+                  isActive ? 'bg-[#F7CFD8] text-[#13202b]' : 'text-[#27445D]'
                 }`
               }
             >
