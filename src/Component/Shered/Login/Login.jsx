@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
 import img1 from '../../../assets/Signup bg.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { FcGoogle } from 'react-icons/fc'; 
+import { AuthContext } from '../../../Provider/AuthProvider';
+ 
 
 const Login = () => { 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const {login} = useContext(AuthContext)
    
 
 
-  const hundleCreateUser = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
     const form = e.target 
     const email = form.email.value
@@ -28,13 +32,14 @@ const Login = () => {
     else{
       setError('')
     }
-
-    try{
-       
-  
-    }catch(err){
-        console.log(err)
-      }
+    try {
+      await login(email, password);  // Attempt to log in
+      form.reset();  // Clear the form
+      navigate('/');  // Redirect to home page
+    } catch (err) {
+      setError('Failed to log in. Please check your email and password.');
+      console.error('Login error:', err);
+    } 
   console.log( email, password)
   }
  
@@ -44,7 +49,7 @@ const Login = () => {
       className='min-h-[100vh] flex justify-center items-center bg-cover bg-center' 
       style={{ backgroundImage: `url(${img1})` }}
     >
-      <form onSubmit={hundleCreateUser} className='max-w-[450px] w-full pb-5 bg-[#e9defae5]  bg-opacity-90 rounded-lg shadow-lg'>
+      <form onSubmit={handleLogin} className='max-w-[450px] w-full pb-5 bg-[#e9defae5]  bg-opacity-90 rounded-lg shadow-lg'>
         <div className='w-full mx-auto h-4 rounded-none bg-[#578FCA]'></div>
         <h1 className='text-center font-sans text-4xl pt-8 font-semibold text-[#578FCA]'>Login</h1>
         <p className='text-center pt-2'>Let's get started with your</p>

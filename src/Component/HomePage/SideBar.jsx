@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { AiOutlineBars } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AiOutlineBars } from "react-icons/ai"; 
 import MenuItem from "../Shered/MenuItem";
+import { useNavigate } from "react-router-dom";
 import './sidebar.css'
 import {
   FcApprove,
@@ -15,9 +15,20 @@ import {
   FcPositiveDynamic,
   FcServices,
 } from "react-icons/fc";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const SideBar = () => {
   const [isActive, setActive] = useState(false);
+  const {logout} = useContext(AuthContext)
+ 
+  const handleLogout = async () => {
+    try {
+      await logout();  // Ensure the logout function completes
+      navigate("/login");  // Redirect to the login page
+    } catch (error) {
+      console.error("Failed to log out:", error);
+    }
+  };
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -76,9 +87,9 @@ const SideBar = () => {
         </div>
 
         <div>
-          <hr />
-          <button
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 transform"
+          <hr/>
+          <button onClick={handleLogout}
+            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-[#fde1f6] hover:text-gray-700 transition-colors duration-300 transform"
           >
             <FcImport className="w-5 h-5" />
             <span className="mx-4 font-medium">Logout</span>

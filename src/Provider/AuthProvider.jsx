@@ -3,7 +3,9 @@ import { app } from "../Firebase/firebase.config";
 import { 
     createUserWithEmailAndPassword,
     getAuth,
-    onAuthStateChanged, 
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut, 
   } from 'firebase/auth' 
 
 export const AuthContext = createContext(null)
@@ -16,6 +18,16 @@ const AuthProvider = ( {children} ) => {
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const login = (email, password) => {
+      setLoading(true)
+      signInWithEmailAndPassword(auth, email, password)
+    } 
+
+    const logout = async () => {
+      setLoading(true)
+      return signOut(auth)
     }
 
      // onAuthStateChange
@@ -33,7 +45,10 @@ const AuthProvider = ( {children} ) => {
 
     const authInfo = {
         user,
-        createUser
+        createUser,
+        logout,
+        login,
+        loading
     }
 
     return (

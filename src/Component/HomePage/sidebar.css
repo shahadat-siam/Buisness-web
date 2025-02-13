@@ -1,7 +1,7 @@
 /* Custom Scrollbar */
 .sidebar-scroll {
   scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #6b7280 #e5e7eb; /* thumb color and track color */
+  scrollbar-color: #3D8D7A #e5e7eb; /* thumb color and track color */
 }
 
 .sidebar-scroll::-webkit-scrollbar {

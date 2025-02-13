@@ -14,12 +14,12 @@ const MenuItem = ({ label, address, icon: Icon, subItems = [] }) => {
   return (
     <div className="w-full">
       {/* Main Menu Item */}
-      <div className="flex items-center justify-between px-4 py-2 my-2 transition-colors duration-300 transform hover:bg-[#FFEDFA] hover:text-[#F7F7F7]">
+      <div className="flex items-center justify-between px-4 py-2 my-[6px] transition-colors duration-300 transform hover:bg-[#fde1f6] hover:text-[#3D8D7A]">
         <NavLink
           to={address}
           end
           className={({ isActive }) =>
-            `flex items-center ${isActive ? 'text-[#13202b] ' : 'text-[#27445D]'}`
+            `flex items-center ${isActive ? 'text-[#3D8D7A] ' : 'text-[#27445D]'}`
           }
         >
           <Icon className="w-5 h-5" />
@@ -38,15 +38,15 @@ const MenuItem = ({ label, address, icon: Icon, subItems = [] }) => {
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className={`overflow-hidden ml-8 border-l border-gray-300 ${isOpen ? 'mt-2' : ''}`}
+          className={`overflow-hidden ml-8 border-l border-[#3d8d7aa2] ${isOpen ? 'mt-2' : ''}`}
         >
           {subItems.map((subItem) => (
             <NavLink
               key={subItem.address}
               to={subItem.address}
               className={({ isActive }) =>
-                `block px-4 py-2 my-1 text-sm transition-colors duration-300 transform hover:bg-[#F7CFD8] hover:text-[#21394e] ${
-                  isActive ? 'bg-[#F7CFD8] text-[#13202b]' : 'text-[#27445D]'
+                `block px-4 py-2 my-1 text-sm transition-colors duration-300 transform hover:bg-[#fde1f6] hover:text-[#3D8D7A] ${
+                  isActive ? 'bg-[#fde1f6] text-[#3D8D7A]' : 'text-[#27445D]'
                 }`
               }
             >
