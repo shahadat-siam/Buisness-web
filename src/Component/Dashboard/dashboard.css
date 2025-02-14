@@ -1,0 +1,50 @@
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.dashboard-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-card h2 {
+    color: #4a5568; /* Gray-700 */
+    font-weight: 600;
+  }
+  
+  .dashboard-card p {
+    margin-top: 10px;
+  }
+  
+  .bg-gray-100 {
+    background-color: #f7fafc;
+  }
+  
+  .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .rounded-2xl {
+    border-radius: 1rem;
+  }
+  
+  .text-green-500 {
+    color: #10b981;
+  }
+  
+  .text-red-500 {
+    color: #ef4444;
+  }
+  
+  .text-blue-500 {
+    color: #3b82f6;
+  }
+  
+  .text-orange-500 {
+    color: #f97316;
+  }
+  

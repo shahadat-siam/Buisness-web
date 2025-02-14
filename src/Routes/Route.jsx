@@ -8,6 +8,7 @@ import Statistics from "../Component/HomePage/Statistic";
 import Purchase from "../MenuOption/Purchase/Purchase";
 import Sale from "../MenuOption/Sale/Sale";
 import Bank from "../MenuOption/Bank/Bank";
+import Dashboard from "../Component/Dashboard/Dashboard";
 
  export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ import Bank from "../MenuOption/Bank/Bank";
             {
                 path: '/lroot/bank',
                 element: <Bank/>
+            },
+            {
+                path: '/lroot/dashboard',
+                element: <Dashboard/>
             }
         ]
     }

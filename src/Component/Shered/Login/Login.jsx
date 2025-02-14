@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import img1 from '../../../assets/Signup bg.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -6,13 +6,30 @@ import { RiEyeCloseLine } from 'react-icons/ri';
 import { FcGoogle } from 'react-icons/fc'; 
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { PiSpinnerBallFill } from 'react-icons/pi';
+import { TbFidgetSpinner } from 'react-icons/tb';
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { login, loading, setLoading } = useContext(AuthContext);
+  const {user, login, loading, setLoading, signInGoogle } = useContext(AuthContext);
   // console.log(loading)
+
+    useEffect(() => {
+      if (user) {
+        navigate('/');
+      }
+    }, [navigate, user]);
+
+  const handleGoogleSignin = async () => {
+    try{
+      await signInGoogle()
+      setLoading(false)
+    } catch(err){
+      console.log(err.message)
+      setLoading(false)
+    }
+  }
   
   const handleLogin = async (e) => {
     e.preventDefault(); 
@@ -34,10 +51,9 @@ const Login = () => {
     }
 
     try { 
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 100));
       await login(email, password);
-      form.reset();
-      navigate('/'); 
+      form.reset(); 
     } catch (err) {
       setError('Failed to log in. Please check your email and password.');
       console.error('Login error:', err);
@@ -84,7 +100,7 @@ const Login = () => {
               type="submit" 
               className={`w-full p-2 rounded-md text-slate-100 font-semibold flex justify-center items-center ${loading ? 'bg-[#497D74] cursor-not-allowed' : 'bg-[#497D74]'}`}
               >
-               {loading ? <PiSpinnerBallFill className='animate-spin text-2xl m-auto'/> : 'Login'}
+               {loading ? <TbFidgetSpinner className='animate-spin text-2xl m-auto'/> : 'Login'}
             </button>
           </div>
           <p className='text-center text-sm'>
@@ -93,11 +109,11 @@ const Login = () => {
               Sign up!
             </Link>
           </p>
-          <div className='flex cursor-pointer items-center px-10 py-2 border-[1px] shadow-md border-gray-400 rounded-md'>
+          <div onClick={handleGoogleSignin} className='flex mx-1 cursor-pointer items-center px-7 py-1 border-[1px] shadow-md border-gray-400 rounded-md'>
             <FcGoogle className='text-2xl' />
             <button 
               type="button" 
-              className='w-full p-2 font-semibold text-center'
+              className='w-full p-1 font-semibold text-center'
             >
               Continue with Google
             </button>

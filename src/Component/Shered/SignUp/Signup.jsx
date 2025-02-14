@@ -8,7 +8,7 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 import { PiSpinnerBallFill } from 'react-icons/pi';
 
 const Signup = () => {
-  const { user, loading, setLoading, createUser } = useContext(AuthContext);
+  const { user, loading, setLoading, createUser, signInGoogle  } = useContext(AuthContext);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState('');
   // const [isLoading, setIsLoading] = useState(false);  // Track loading state
@@ -19,6 +19,16 @@ const Signup = () => {
       navigate('/');
     }
   }, [navigate, user]);
+
+  const handleGoogleSignin = async () => {
+    try{
+      await signInGoogle()
+      setLoading(false)
+    } catch(err){
+      console.log(err.message)
+      setLoading(false)
+    }
+  }
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
@@ -38,6 +48,7 @@ const Signup = () => {
     }
 
     try { 
+      await new Promise((resolve) => setTimeout(resolve, 100));
       const result = await createUser(email, password);
       console.log(result);
       // You can also navigate after successful signup if needed
@@ -77,9 +88,9 @@ const Signup = () => {
             
           </div>
           <p className='text-center text-sm'>Already have an account? <Link to='/login' className='text-[#578FCA] font-semibold underline'>Login!</Link></p>
-          <div className='flex cursor-pointer items-center px-10 py-1 border-[1px] shadow-md border-gray-400 rounded-md'>
+          <div onClick={handleGoogleSignin} className='flex mx-1 cursor-pointer items-center px-7 py-1 border-[1px] shadow-md border-gray-400 rounded-md'>
             <p className='text-2xl'> <FcGoogle /></p>
-            <button type="button" className='w-full p-2 rounded-md font-semibold'>Continue with Google</button>
+            <button type="button" className='w-full p-1 rounded-md font-semibold'>Continue with Google</button>
           </div>
         </div>
       </form>
