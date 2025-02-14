@@ -5,55 +5,57 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { PiSpinnerBallFill } from 'react-icons/pi';
 
 const Signup = () => {
-  const { user, createUser} = useContext(AuthContext)
+  const { user, loading, setLoading, createUser } = useContext(AuthContext);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate()
-   
-  useEffect(() => {
-    if(user){
-      navigate('/')
-    }
-  }, [navigate,user])
-
-  const hundleCreateUser = async (e) => {
-    e.preventDefault()
-    const form = e.target
-    const name = form.name.value
-    const email = form.email.value
-    const password = form.password.value
-
-    if(password.length < 6) {
-      const error = 'password should be 6 char'
-      return setError(error)
-    }
-    else if(! /^(?=.*[a-z])(?=.*?[#?!@$%^&*-])(?=.*[A-Z]).+$/.test(password)){
-      const error = 'at least one capital latter & special character'
-      return setError(error)
-    } 
-    else{
-      setError('')
-    }
-
-    try{
-      const result = await createUser(email,password)
-        console.log(result)
-  
-    }catch(err){
-        console.log(err)
-      }
-  console.log(name, email, password)
-  }
+  // const [isLoading, setIsLoading] = useState(false);  // Track loading state
+  const navigate = useNavigate();
  
-  
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [navigate, user]);
+
+  const handleCreateUser = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    if (password.length < 6) {
+      const error = 'Password should be at least 6 characters';
+      return setError(error);
+    } else if (!/^(?=.*[a-z])(?=.*?[#?!@$%^&*-])(?=.*[A-Z]).+$/.test(password)) {
+      const error = 'Password should contain at least one capital letter and one special character';
+      return setError(error);
+    } else {
+      setError('');
+    }
+
+    try { 
+      const result = await createUser(email, password);
+      console.log(result);
+      // You can also navigate after successful signup if needed
+      setLoading(false); // Stop loading after signup is successful
+    } catch (err) {
+      console.log(err);
+      setLoading(false); // Stop loading if there's an error
+    }
+    console.log(name, email, password);
+  };
+ 
+
   return (
     <div 
       className='min-h-[100vh] flex justify-center items-center bg-cover bg-center' 
       style={{ backgroundImage: `url(${img1})` }}
     >
-      <form onSubmit={hundleCreateUser} className='max-w-[450px] w-full pb-5 bg-[#e9defae5]  bg-opacity-90 rounded-lg shadow-lg'>
+      <form onSubmit={handleCreateUser} className='max-w-[450px] w-full pb-5 bg-[#e9defae5]  bg-opacity-90 rounded-lg shadow-lg'>
         <div className='w-full mx-auto h-4 rounded-none bg-[#578FCA]'></div>
         <h1 className='text-center font-mono text-3xl pt-8 font-semibold text-[#578FCA]'>Sign up</h1>
         <p className='text-center pt-2'>Let's get started with your</p>
@@ -61,22 +63,23 @@ const Signup = () => {
           <input type="text" name='name' className='w-full px-4 py-2  rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Name' required />
           <input type="email" name='email' className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Email' required />
           <div className='relative'>
-            <input name='password' type= {passwordVisible ? "text" : "password" }  className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Password ***' />
-               {error && <p>{error}</p>}
-            <a type='button'
-                className="absolute right-3 top-3 text-gray-500"
-                onClick={() => setPasswordVisible(!passwordVisible)}
-              >
-                {passwordVisible ? <FaEyeSlash /> : <RiEyeCloseLine />}
-              </a> 
-          </div>        
-          <div>
-            <button type="submit" className='w-full bg-[#497D74] p-2 rounded-md text-slate-100 font-semibold'>Sign Up</button>
+            <input name='password' type={passwordVisible ? "text" : "password"} className='w-full px-4 py-2 rounded-md outline-none border-[1px] focus-within:shadow-lg focus:border-[#578FCA]' placeholder='Password ***' />
+            {error && <p>{error}</p>}
+            <a type='button' className="absolute right-3 top-3 text-gray-500" onClick={() => setPasswordVisible(!passwordVisible)}>
+              {passwordVisible ? <FaEyeSlash /> : <RiEyeCloseLine />}
+            </a>
           </div>
-          <p className='text-center text-sm'>Already have an account? <Link to='/login' className='text-[#578FCA] font-semibold underline' to='/login'>Login!</Link></p>
-          <div className=' flex cursor-pointer items-center px-10 py-1 border-[1px] shadow-md border-gray-400 rounded-md'>
+          <div>
+            
+              <button type="submit" className={`w-full p-2 rounded-md text-slate-100 font-semibold flex justify-center items-center ${loading ? 'bg-[#497D74] cursor-not-allowed' : 'bg-[#497D74]'}`}>
+                  {loading ? <PiSpinnerBallFill className='animate-spin text-2xl m-auto'/> : 'Sign up'}
+              </button>
+            
+          </div>
+          <p className='text-center text-sm'>Already have an account? <Link to='/login' className='text-[#578FCA] font-semibold underline'>Login!</Link></p>
+          <div className='flex cursor-pointer items-center px-10 py-1 border-[1px] shadow-md border-gray-400 rounded-md'>
             <p className='text-2xl'> <FcGoogle /></p>
-            <button type="button" className='w-full p-2 rounded-md  font-semibold'>Continue with Google</button>
+            <button type="button" className='w-full p-2 rounded-md font-semibold'>Continue with Google</button>
           </div>
         </div>
       </form>

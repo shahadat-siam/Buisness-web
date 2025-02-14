@@ -14,7 +14,8 @@ const auth = getAuth(app)
 const AuthProvider = ( {children} ) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    console.log(user)
+    // console.log(user)
+    // console.log(loading)
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -48,7 +49,8 @@ const AuthProvider = ( {children} ) => {
         createUser,
         logout,
         login,
-        loading
+        loading,
+        setLoading
     }
 
     return (
@@ -56,4 +58,4 @@ const AuthProvider = ( {children} ) => {
     )
 
 }
-export default AuthProvider
+export default AuthProvider;

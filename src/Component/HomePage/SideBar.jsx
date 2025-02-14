@@ -19,14 +19,17 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const SideBar = () => {
   const [isActive, setActive] = useState(false);
-  const {logout} = useContext(AuthContext)
+  const {logout, loading, setLoading} = useContext(AuthContext)
+  const navigate = useNavigate()
  
   const handleLogout = async () => {
     try {
       await logout();  // Ensure the logout function completes
-      navigate("/login");  // Redirect to the login page
+      setLoading(false)
+      navigate("/signup");  // Redirect to the login page
     } catch (error) {
       console.error("Failed to log out:", error);
+      setLoading(false)
     }
   };
 
