@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../Provider/AuthProvider'; 
+import { AuthContext } from '../../Provider/AuthProvider';  
+import CashFlowDialog from '../DialogBox/DialogBox';
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,9 +35,16 @@ const Navbar = () => {
         </div>
 
         {/* Links Section */}
-        <div>
+        <div className='flex items-center justify-center space-x-2'>
+          <div>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="px-3 py-1 text-white bg-[#235c5e55] rounded-sm " >Cash Flow
+          </button>
+          {isOpen && <CashFlowDialog isOpen={isOpen} setIsOpen={setIsOpen} />}
+          </div>
           <div className="text-white md:pr-4 pr-12 font-semibold">
-            Welcome, {user?.displayName || 'User'}!
+              {user?.displayName || 'User'}!
           </div>
         </div>
       </div>

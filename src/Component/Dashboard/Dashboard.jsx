@@ -37,24 +37,24 @@ const Dashboard = () => {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-8">Business Dashboard</h1>
+      <h1 className="text-4xl font-semibold text-gray-800 mb-4">Business Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Cards for Key Metrics */}
         <div className="dashboard-card bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-lg font-semibold text-gray-700">Total Sales (This Month)</h2>
-          <p className="text-3xl font-bold text-green-500 mt-2">{totalSales.toLocaleString()} BDT</p>
+          <p className="text-2xl font-bold text-green-500 mt-2">{totalSales.toLocaleString()} BDT</p>
         </div>
         <div className="dashboard-card bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-lg font-semibold text-gray-700">Total Purchases (This Month)</h2>
-          <p className="text-3xl font-bold text-red-500 mt-2">{totalPurchases.toLocaleString()} BDT</p>
+          <p className="text-2xl font-bold text-red-500 mt-2">{totalPurchases.toLocaleString()} BDT</p>
         </div>
         <div className="dashboard-card bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-lg font-semibold text-gray-700">Bank Balance</h2>
-          <p className="text-3xl font-bold text-blue-500 mt-2">{bankBalance.toLocaleString()} BDT</p>
+          <p className="text-2xl font-bold text-blue-500 mt-2">{bankBalance.toLocaleString()} BDT</p>
         </div>
         <div className="dashboard-card bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-lg font-semibold text-gray-700">Total Expenses (This Month)</h2>
-          <p className="text-3xl font-bold text-orange-500 mt-2">{totalExpenses.toLocaleString()} BDT</p>
+          <p className="text-2xl font-bold text-orange-500 mt-2">{totalExpenses.toLocaleString()} BDT</p>
         </div>
       </div>
 
