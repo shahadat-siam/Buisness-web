@@ -74,19 +74,18 @@ export default function CashFlowDialog({ isOpen, setIsOpen }) {
     <div className=" ">
     <DualDatePicker/>
       {/* Opening Balance */}
-      <div className="p-3 bg-yellow-100 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold text-yellow-800">
-          Opening Balance
-        </h2>
-        <div className="flex justify-between font-bold text-lg">
-          <span>Previous Day Balance:</span>
-          <span>BDT {data.openingBalance.toLocaleString()}</span>
-        </div>
+      <div className="grid grid-cols-2 gap-2 p-2">
+       <div>
+       <div className="p-3 bg-[#eee]  shadow-sm">
+        <h2 className="text-sm font-semibold ">
+          Opening Balance : <span>BDT {data.openingBalance.toLocaleString()}</span>
+        </h2> 
       </div>
+       </div>
 
       {/* Net Cash Flow */}
-      <div className="p-3 bg-green-100 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold text-green-800">
+      <div className="p-3 bg-[#eee] rounded-sm shadow-md">
+        <h2 className="text-md font-semibold  ">
           Net Cash Flow
         </h2>
         <div className="flex justify-between text-lg font-bold">
@@ -96,8 +95,8 @@ export default function CashFlowDialog({ isOpen, setIsOpen }) {
       </div>
 
       {/* Total Cash Inflows */}
-      <div className="p-3 bg-blue-100 rounded-lg shadow-md mb-4">
-        <h2 className="text-xl font-semibold text-blue-800">
+      <div className="p-3 bg-[#eee] rounded-sm shadow-md mb-4">
+        <h2 className="text-md font-semibold  ">
           Total Cash Inflows
         </h2>
         <div className="space-y-3">
@@ -119,7 +118,7 @@ export default function CashFlowDialog({ isOpen, setIsOpen }) {
               BDT {data.cashIn.otherIncome.toLocaleString()}
             </span>
           </div>
-          <div className="flex justify-between border-t border-blue-300 pt-3 font-bold">
+          <div className="flex justify-between border-t border-[#a3a3a3] pt-3 font-semibold">
             <span>Total Cash In:</span>
             <span>BDT {calculateTotalCashIn().toLocaleString()}</span>
           </div>
@@ -127,8 +126,8 @@ export default function CashFlowDialog({ isOpen, setIsOpen }) {
       </div>
 
       {/* Total Cash Outflows */}
-      <div className="p-3 bg-red-100 rounded-lg shadow-md mb-4">
-        <h2 className="text-xl font-semibold text-red-800">
+      <div className="p-3 bg-[#eee] rounded-sm shadow-md mb-4">
+        <h2 className="text-md font-semibold ">
           Total Cash Outflows
         </h2>
         <div className="space-y-3">
@@ -150,11 +149,12 @@ export default function CashFlowDialog({ isOpen, setIsOpen }) {
               BDT {data.cashOut.expenses.toLocaleString()}
             </span>
           </div>
-          <div className="flex justify-between border-t border-red-300 pt-3 font-bold">
+          <div className="flex justify-between border-t border-[#d1d0d0] pt-3 font-semibold">
             <span>Total Cash Out:</span>
             <span>BDT {calculateTotalCashOut().toLocaleString()}</span>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
