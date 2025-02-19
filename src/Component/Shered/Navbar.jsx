@@ -24,7 +24,7 @@ const Navbar = () => {
         isScrolled ? 'bg-[#216d6e] shadow-md' : 'bg-[#3D8D7A]'
       }`}
     >
-      <div className="flex max-w-7xl mx-auto px-6 py-4 justify-between items-center">
+      <div className="flex  mx-auto px-6 py-4 justify-between items-center">
         {/* Logo Section */}
         <div>
           <Link to="/" className="flex items-center">

@@ -31,13 +31,13 @@ const DualDatePicker = () => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="p-4 bg-white rounded-lg shadow-md"
+      className=" bg-white rounded-lg "
     >
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3, delay: 0.2 }}>
         <div className="flex  gap-3"> 
           <div className="flex gap-3">
             {/* From Date Picker */}
-            <div className="flex items-center border w-[12rem] rounded-sm shadow-sm overflow-hidden">
+            <div className="flex items-center border max-w-[11rem] rounded-sm shadow-sm overflow-hidden">
               <label className="px-3 py-2 bg-gray-200 text-gray-600 font-medium">From</label>
               <DatePicker
                 selected={fromDate}
@@ -53,7 +53,7 @@ const DualDatePicker = () => {
             </div>
 
             {/* To Date Picker */}
-            <div className="flex items-center border w-[12rem] rounded-sm shadow-sm overflow-hidden">
+            <div className="flex items-center border max-w-[10rem] rounded-sm shadow-sm overflow-hidden">
               <label className="px-3 py-2 bg-gray-200 text-gray-600 font-medium">To</label>
               <DatePicker
                 selected={toDate}
@@ -69,7 +69,7 @@ const DualDatePicker = () => {
               />
             </div>
             {/* Today Button */}
-          <button onClick={handleToday} className="px-4 py-1 text-sm border rounded-lg bg-gray-100 hover:bg-blue-200 transition">
+          <button onClick={handleToday} className="px-4 py-1 text-sm border rounded-md bg-gray-100 hover:bg-blue-200 transition">
             Today
           </button>
           </div>

@@ -53,11 +53,11 @@ export default function CashFlowDialog({ isOpen, setIsOpen }) {
         exit={{ y: 50, opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-       <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white p-8 text-left shadow-2xl max-h-[80vh] flex flex-col">
+       <Dialog.Panel className="w-full  transform overflow-hidden rounded-2xl bg-white p-8 text-left shadow-2xl max-h-[80vh] flex flex-col">
   {/* Fixed Header */}
   <div className="sticky top-0 bg-white z-10 border-b pb-4 mb-4">
-    <div className="flex justify-between items-center">
-      <Dialog.Title className="text-2xl font-bold text-gray-800">
+    <div className="flex justify-between  items-center">
+      <Dialog.Title className="text-2xl font-semibold  text-gray-800">
         Daily Cash Flow Statement
       </Dialog.Title>
       <XIcon
@@ -72,9 +72,29 @@ export default function CashFlowDialog({ isOpen, setIsOpen }) {
     
     {/* Add Your Content Here */}
     <div className=" ">
-    <DualDatePicker/>
+     <div className="md:flex  items-center  gap-4">
+      <DualDatePicker/>
+      <button className="px-4 mt-2 md:mt-0 py-2 text-sm border rounded-md bg-[#3D8D7A] text-[#eee] hover:bg-[#216d6e] transition">
+        Update
+      </button>
+     </div>
       {/* Opening Balance */}
-      <div className="grid grid-cols-2 gap-2 p-2">
+      <div className="mt-4">
+        <div className="grid grid-cols-4 bg-[#eee] p-3 gap-2 md:gap-6 font-semibold ">
+          <h3>Opening Balance</h3>
+          <h3>Total Cash In</h3>
+          <h3>Total Cash Out</h3>
+          <h3>Closing Balance</h3>
+        </div>
+        <div className="grid grid-cols-7 p-3 gap-2">
+          <p> </p>
+          <p>+</p>
+          <p> </p>
+          <p>-</p>
+          <p> </p>
+          <p>=</p>
+          <p>000</p>
+        </div>
        <div>
        <div className="p-3 bg-[#eee]  shadow-sm">
         <h2 className="text-sm font-semibold ">
