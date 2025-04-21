@@ -2,12 +2,15 @@ import { Ellipsis, Plus, Search } from 'lucide-react';
 import React, { useState } from 'react'; 
 import SalePost from './SalePost';
 import DatePicker from 'react-datepicker';
+import SalePagination from '../../Component/Shered/Pagination/SalePagination';
 
 const Sale = () => {
   const [menuOpen, setMenuOpen] = useState(null); 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+
+  // const dummyData = Array.from({ length: 250 }, (_, i) => `Sale Post #${i + 1}`);
 
   const handleClear = () => {
     setStartDate(null);
@@ -61,60 +64,66 @@ const Sale = () => {
         </div>
       </div> 
 
-       {/* search Function   */}
-      <div className="my-2 flex  flex-wrap items-center gap-1 bg-white px-2 py-0 rounded  shadow-sm  w-full max-w-xl">
-        
-        {/* Clear Button */}
-        <button onClick={handleClear} className="px-4 py-2 bg-gray-100 text-gray-700 rounded-sm hover:bg-gray-200">
-          Clear
-        </button>
+       <div className='flex justify-between items-center'>
+               {/* search Function   */}
+          <div className="my-2 flex  flex-wrap items-center gap-1 bg-white px-2 py-0 rounded  shadow-sm  w-full max-w-xl">
+            
+            {/* Clear Button */}
+            <button onClick={handleClear} className="px-4 py-2 bg-gray-100 text-gray-700 rounded-sm hover:bg-gray-200">
+              Clear
+            </button>
 
-        {/* Date Range Picker (placeholder) */}
-        <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            placeholderText="Start Date"
-            className="border rounded px-3 w-24 py-2 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#216d6e6e]"
-            dateFormat="dd-MM-yy"
-            showMonthDropdown
-            showYearDropdown
-            dropdownMode="select"
-          />
+            {/* Date Range Picker (placeholder) */}
+            <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                placeholderText="Start Date"
+                className="border rounded px-3 w-24 py-2 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#216d6e6e]"
+                dateFormat="dd-MM-yy"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+              />
 
-          <span className="text-gray-500">to</span>
+              <span className="text-gray-500">to</span>
 
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            placeholderText="End Date"
-            className="border rounded w-24 px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#216d6e6e]"
-            dateFormat="dd-MM-yy"
-            showMonthDropdown
-            showYearDropdown
-            dropdownMode="select"
-          />
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                placeholderText="End Date"
+                className="border rounded w-24 px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#216d6e6e]"
+                dateFormat="dd-MM-yy"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+              />
 
-        {/* Search Input */}
-        <input
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          type="text"
-          placeholder="Search by name or ID"
-          className="flex-1 border rounded px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#216d6e6e]"
-        />
+            {/* Search Input */}
+            <input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              type="text"
+              placeholder="Search by name or ID"
+              className="flex-1 border rounded px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#216d6e6e]"
+            />
 
-        {/* Search Icon Button */}
-        <button onClick={handleSearch}  className="hover:bg-gray-200  p-2 rounded">
-          <Search size={19} />
-        </button> 
-      </div> 
+            {/* Search Icon Button */}
+            <button onClick={handleSearch}  className="hover:bg-gray-200  p-2 rounded">
+              <Search size={19} />
+            </button> 
+          </div> 
+
+          <div>
+            {/* <SalePagination data={dummyData} /> */}
+          </div>
+       </div>
 
       <div className='h-[68vh] border-t-2 overflow-y-auto '>
         <SalePost/>

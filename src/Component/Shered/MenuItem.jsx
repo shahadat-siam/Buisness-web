@@ -45,8 +45,7 @@ const MenuItem = ({ label, address, icon: Icon, subItems = [] }) => {
               key={subItem.address}
               to={subItem.address}
               className={({ isActive }) =>
-                `block px-4 py-2 my-1 text-sm transition-colors duration-300 transform hover:bg-[#fde1f6] hover:text-[#3D8D7A] ${
-                  isActive ? 'bg-[#fde1f6] text-[#3D8D7A]' : 'text-[#27445D]'
+                `block px-4 py-2 my-1 text-sm transition-colors duration-300 transform hover:bg-[#fde1f6] hover:text-[#3D8D7A] 
                 }`
               }
             >

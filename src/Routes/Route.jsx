@@ -9,6 +9,8 @@ import Purchase from "../MenuOption/Purchase/Purchase";
 import Sale from "../MenuOption/Sale/Sale";
 import Bank from "../MenuOption/Bank/Bank";
 import Dashboard from "../Component/Dashboard/Dashboard";
+import SalePayment from "../MenuOption/Sale/CusPayment/SalePayment";
+import Customer from "../MenuOption/Sale/Customer/Customer";
 
  export const router = createBrowserRouter([
     {
@@ -44,6 +46,14 @@ import Dashboard from "../Component/Dashboard/Dashboard";
             {
                 path:'/lroot/sale',
                 element: <Sale/>
+            },
+            {
+                path: '/lroot/sale/payment',
+                element: <SalePayment/>
+            },
+            {
+                path: '/lroot/sale/customer',
+                element: <Customer/>
             },
             {
                 path: '/lroot/bank',

@@ -67,8 +67,8 @@ const SideBar = () => {
                 icon={FcApprove}
                 subItems={[
                   { label: "Sale", address: "/lroot/sale" },
-                  { label: "Payment", address: "/sale/payment" },
-                  { label: "Customer", address: "/sale/customer" },
+                  { label: "Payment", address: "/lroot/sale/payment" },
+                  { label: "Customer", address: "/lroot/sale/customer" },
                 ]}
               />
               <MenuItem
