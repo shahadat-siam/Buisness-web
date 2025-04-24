@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import SalePost from './SalePost';
 import DatePicker from 'react-datepicker';
 import SalePagination from '../../Component/Shered/Pagination/SalePagination';
+import CreateSaleBox from './CreateSale/CreateSaleBox';
 
 const Sale = () => {
   const [menuOpen, setMenuOpen] = useState(null); 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   // const dummyData = Array.from({ length: 250 }, (_, i) => `Sale Post #${i + 1}`);
 
@@ -43,10 +45,11 @@ const Sale = () => {
       <div className="flex items-center justify-between mx-auto">
         <div className="text-xl uppercase">Sales of My Soft</div>
         <div className='flex items-center gap-2'>
-          <button className="bg-[#216d6e] flex items-center gap-1 font-semibold shadow-md text-white px-4 py-2 rounded-sm ">
+          <button onClick={() => setIsOpen(true)} className="bg-[#216d6e] flex items-center gap-1 font-semibold shadow-md text-white px-4 py-2 rounded-sm ">
           <Plus />
             Create New
           </button>
+          {isOpen && <CreateSaleBox isOpen={isOpen} setIsOpen={setIsOpen} />}
           <div className="relative ml-2">
               <button
                 onClick={() => setMenuOpen(menuOpen ? null : true)}
