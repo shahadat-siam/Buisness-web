@@ -19,10 +19,32 @@ export default function CreateSaleBox({ isOpen, setIsOpen }) {
     discount: 0,
     subtotal: 0
   }]);
+  const defaultProducts = [
+  "Cement Bag",
+  "Steel Rod",
+  "Bricks",
+  "Sand",
+];
   const [summary, setSummary] = useState({ total: 0, discount: 0, net: 0, paid: 0 });
   const [saleStatus, setSaleStatus] = useState("Delivered");
   const [paymentStatus, setPaymentStatus] = useState("Paid");
   const [remark, setRemark] = useState("");
+  const [saleItems, setSaleItems] = useState([]);
+
+  const addProduct = (productName) => {
+    setSaleItems([
+      ...saleItems,
+      {
+        description: productName,
+        store: "",
+        bdl_ps: "",
+        qty: 1,
+        unitPrice: 0,
+        discount: 0,
+        subtotal: 0,
+      },
+    ]);
+  };
 
   useEffect(() => {
     const currentDate = new Date().toISOString().split("T")[0];
@@ -201,14 +223,14 @@ export default function CreateSaleBox({ isOpen, setIsOpen }) {
                 </div> 
 
                 <div className="p-4 border-[1px] border-gray-300 bg-gray-200">
-                  <div className="grid grid-cols-8 gap-2 bg-gray-600 text-white font-semibold text-sm border-b p-2">
+                  <div className="flex justify-between gap-2 bg-gray-600 text-white font-semibold text-sm border-b p-2">
                     <div>Description</div><div>Store</div><div>BDL/PS</div><div>Qty</div><div>Unit Price</div><div>Discount</div><div>Subtotal</div><div></div>
                   </div>
                   {products.map((product, i) => (
-                    <div key={i} className="grid grid-cols-8 gap-2 py-2 items-center">
-                      <input type="text" value={product.description} onChange={(e) => handleProductChange(i, "description", e.target.value)} className="border p-1" />
+                    <div key={i} className="flex justify-between gap-2 py-2 items-center">
+                      <input type="text" value={product.description} onChange={(e) => handleProductChange(i, "description", e.target.value)} className="border  p-1" />
                       <select value={product.store} onChange={(e) => handleProductChange(i, "store", e.target.value)} className="border p-1"><option>Store A</option></select>
-                      <input type="text" value={product.bdlps} onChange={(e) => handleProductChange(i, "bdlps", e.target.value)} className="border p-1" />
+                      <input type="text" value={product.bdlps} onChange={(e) => handleProductChange(i, "bdlps", e.target.value)} className="border max-w-24 p-1" />
                       <input type="number" value={product.quantity} onChange={(e) => handleProductChange(i, "quantity", parseInt(e.target.value))} className="border p-1" />
                       <input type="number" value={product.unitPrice} onChange={(e) => handleProductChange(i, "unitPrice", parseFloat(e.target.value))} className="border p-1" />
                       <input type="number" value={product.discount} onChange={(e) => handleProductChange(i, "discount", parseFloat(e.target.value))} className="border p-1" />
@@ -216,9 +238,10 @@ export default function CreateSaleBox({ isOpen, setIsOpen }) {
                       <button onClick={() => handleDeleteProduct(i)} className="text-red-500">Delete</button>
                     </div>
                   ))}
-                  <button onClick={handleAddProduct} className="mt-2 px-4 py-2 bg-green-500 text-white rounded">+ Add Product</button>
+                   
                 </div>
 
+                  <button onClick={handleAddProduct} className="mt-2 px-4 py-2 bg-green-500 text-white rounded">+ Add Product</button>
                 <div className="grid grid-cols-4 gap-4">
                   <div className="col-span-2"></div>
                   <div className="flex flex-col gap-2">
